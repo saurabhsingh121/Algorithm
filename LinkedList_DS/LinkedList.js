@@ -76,6 +76,34 @@ class LinkedList {
          this.length--;
          return this;
      }
+
+     reverse() {
+        if(!this.head.next){
+            return this;
+        }
+        //assigning the head to one first variable
+        let first = this.head;
+        //assuming that the now head will end up being tail at the end, so assigning the value
+        this.tail = this.head;
+        //taking second node to the first node
+        let second = first.next;
+        while(second){
+            //taking a temp/thrid variable the second node
+            const temp = second.next;
+            //assigning the first node to the third position
+            second.next = first;
+            //moving the second node to the first node
+            first = second;
+            //now moving the third node to the second
+            second = temp;
+        }
+        //atlast, assuming that the first node will be at last and will be referencing to no node
+        this.head.next = null;
+        //now assigning the head node with the current first node
+        this.head = first;
+
+        return this;
+    }
 }
 
 const myLinkedList = new LinkedList(5);
@@ -88,3 +116,5 @@ myLinkedList.remove(3);
 console.log('====================================');
 console.log(myLinkedList.printList());
 console.log('====================================');
+myLinkedList.reverse();
+console.log(myLinkedList.printList());
