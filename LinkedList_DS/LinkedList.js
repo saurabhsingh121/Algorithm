@@ -7,10 +7,11 @@ class Node {
 
 class LinkedList {
      constructor(value) {
-         this.head = {
-             value: value,
-             next: null
-         },
+        //  this.head = {
+        //      value: value,
+        //      next: null
+        //  };
+        this.head = new Node(value);
          this.tail = this.head;
          this.length = 1;
      }
@@ -71,7 +72,7 @@ class LinkedList {
      remove(index){
          const leader = this.traverseToIndex(index-1);
          const unwantedNode = leader.next;
-         leader.next = removingPointer.next;
+         leader.next = unwantedNode.next;
          this.length--;
          return this;
      }
